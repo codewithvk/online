@@ -452,6 +452,9 @@ L.Map.Keyboard = L.Handler.extend({
 			return;
 		}
 
+		// if any key is pressed, we stop the following other users
+		this._map.userList.followUser(this._map._docLayer._viewId);
+
 		if (window.KeyboardShortcuts.processEvent(app.UI.language.fromURL, ev)) {
 			ev.preventDefault();
 			return;
@@ -602,9 +605,6 @@ L.Map.Keyboard = L.Handler.extend({
 				map.setZoom(map.getZoom() + (ev.shiftKey ? 3 : 1) * this._zoomKeys[key], null, true /* animate? */);
 			}
 		}
-
-		// if any key is pressed, we stop the following other users
-		this._map.userList.followUser(this._map._docLayer._viewId);
 
 		L.DomEvent.stopPropagation(ev);
 	},

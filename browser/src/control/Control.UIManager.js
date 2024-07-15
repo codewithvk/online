@@ -768,6 +768,7 @@ L.Control.UIManager = L.Control.extend({
 		$('.main-nav').show();
 		if (L.Params.closeButtonEnabled && !window.mode.isTablet()) {
 			$('#closebuttonwrapper').show();
+			$('#closebuttonwrapperseparator').show();
 		}
 
 		var obj = $('.unfold');
@@ -791,6 +792,7 @@ L.Control.UIManager = L.Control.extend({
 		$('.main-nav').hide();
 		if (L.Params.closeButtonEnabled) {
 			$('#closebuttonwrapper').hide();
+			$('#closebuttonwrapperseparator').hide();
 		}
 
 		var obj = $('.fold');

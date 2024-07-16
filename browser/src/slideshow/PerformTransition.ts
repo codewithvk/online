@@ -26,6 +26,7 @@ enum TransitionType {
 	ELLIPSEWIPE,
 	BARNDOORWIPE,
 	WATERFALLWIPE,
+	MISCSHAPEWIPE,
 }
 
 enum TransitionSubType {
@@ -74,6 +75,7 @@ const stringToTransitionTypeMap: Record<string, TransitionType> = {
 	EllipseWipe: TransitionType.ELLIPSEWIPE,
 	BarnDoorWipe: TransitionType.BARNDOORWIPE,
 	WaterfallWipe: TransitionType.WATERFALLWIPE,
+	MiscShapeWipe: TransitionType.MISCSHAPEWIPE,
 };
 
 const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
@@ -109,6 +111,7 @@ const stringToTransitionSubTypeMap: Record<string, TransitionSubType> = {
 SlideShow.PerformTransition = function (
 	transitionParameters: TransitionParameters,
 ) {
+	console.log("slideshow:" , transitionParameters.slideInfo);
 	switch (
 		stringToTransitionTypeMap[transitionParameters.slideInfo.transitionType]
 	) {
@@ -172,6 +175,10 @@ SlideShow.PerformTransition = function (
 		case TransitionType.WATERFALLWIPE:
 			// TODO: Need to implement
 			break;
+
+		case TransitionType.MISCSHAPEWIPE:
+			SlideShow.MicsShapeWipeTransition(transitionParameters).start();
+            break;
 
 		default:
 			new SlideShow.NoTransition(transitionParameters).start();

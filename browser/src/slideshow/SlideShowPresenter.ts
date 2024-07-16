@@ -167,7 +167,7 @@ class SlideShowPresenter {
 			transitionParameters.callback = () => {
 				this._slideRenderer.renderFrame(nextTexture);
 			};
-
+			
 			SlideShow.PerformTransition(transitionParameters);
 
 			if (slideInfo?.nextSlideDuration && slideInfo.nextSlideDuration > 0) {

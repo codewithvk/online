@@ -12,7 +12,7 @@
 
 declare var SlideShow: any;
 
-class TransitionParameters3D extends TransitionParameters {
+class TransitionParameters3D extends SlideShow.TransitionParameters {
 	public leavingPrimitives: Primitive[] = [];
 	public enteringPrimitives: Primitive[] = [];
 	public allOperations: Operation[] = [];

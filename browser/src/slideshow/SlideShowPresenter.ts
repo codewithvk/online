@@ -272,7 +272,7 @@ class SlideShowPresenter {
 	}
 
 	private exitSlideshowWithWarning() {
-		const transitionParameters = new TransitionParameters();
+		const transitionParameters = new SlideShow.TransitionParameters();
 		transitionParameters.context = this._slideRenderer._context;
 
 		new SlideShow.StaticTextRenderer(transitionParameters).display(
@@ -281,7 +281,7 @@ class SlideShowPresenter {
 	}
 
 	private startTimer(loopAndRepeatDuration: number) {
-		const transitionParameters = new TransitionParameters();
+		const transitionParameters = new SlideShow.TransitionParameters();
 		transitionParameters.context = this._slideRenderer._context;
 
 		let pauseTimer: PauseTimer;
@@ -330,7 +330,7 @@ class SlideShowPresenter {
 	}
 
 	private startLoader(): void {
-		const transitionParameters = new TransitionParameters();
+		const transitionParameters = new SlideShow.TransitionParameters();
 		transitionParameters.context = this._slideRenderer._context;
 
 		try {
@@ -367,7 +367,7 @@ class SlideShowPresenter {
 			const nextSlide = this._slideCompositor.getSlide(nextSlideNumber);
 			const nextTexture = this._slideRenderer.createTexture(nextSlide);
 
-			const transitionParameters = new TransitionParameters();
+			const transitionParameters = new SlideShow.TransitionParameters();
 			transitionParameters.context = this._slideRenderer._context;
 			transitionParameters.current = currentTexture;
 			transitionParameters.next = nextTexture;

@@ -15,6 +15,7 @@
  * SlideShowPresenter is responsible for presenting the slide show and transitions
  */
 
+/* global _ JSDialog */
 declare var SlideShow: any;
 
 interface VideoInfo {
@@ -376,10 +377,38 @@ class SlideShowPresenter {
 		try {
 			this._slideRenderer = new SlideRendererGl(canvas);
 		} catch (error) {
+			this.showWebGLFallbackWarning();
 			this._slideRenderer = new SlideRenderer2d(canvas);
 		}
 
 		return canvas;
+	}
+
+	private showWebGLFallbackWarning() {
+		if (this._slideShowWindowProxy != null)
+			this._slideShowWindowProxy.style.visibility = 'hidden';
+		const alertId = 'webgl_fallback_warning';
+		if (JSDialog.shouldShowAgain(alertId)) {
+			JSDialog.showInfoModalWithOptions('webgl-fallback-warning', {
+				title: _('Performance Alert'),
+				messages: [
+					_(
+						'We noticed your browser may be using software rendering. For best performance, enable hardware acceleration (if not already enabled).',
+					),
+				],
+				buttons: [
+					{
+						text: _('OK'),
+						callback: () => {
+							JSDialog.setShowAgain(alertId, false);
+							if (this._slideShowWindowProxy != null)
+								this._slideShowWindowProxy.style.visibility = 'visible';
+						},
+					},
+				],
+				withCancel: false,
+			});
+		}
 	}
 
 	exitSlideshowWithWarning(): boolean {
